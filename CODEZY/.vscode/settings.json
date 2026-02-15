@@ -1,0 +1,7 @@
+{
+    "python.analysis.extraPaths": [
+        "D:/codezyfinal/codezy-ai-tutor/venv/Lib/site-packages"
+    ],
+    "python.analysis.autoSearchPaths": true,
+    "git.ignoreLimitWarning": true
+}

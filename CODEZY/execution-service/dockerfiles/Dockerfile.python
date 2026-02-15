@@ -1,0 +1,17 @@
+# Python execution environment
+FROM python:3.11-slim
+
+# Create non-root user for security
+RUN useradd -m -u 1000 coderunner
+
+# Set working directory
+WORKDIR /app
+
+# Install commonly used libraries (can be customized)
+RUN pip install --no-cache-dir numpy pandas
+
+# Switch to non-root user
+USER coderunner
+
+# Default command
+CMD ["python3"]

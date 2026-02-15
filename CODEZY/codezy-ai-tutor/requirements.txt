@@ -1,0 +1,12 @@
+# Core AI libraries
+langchain>=1.0.0
+openai>=1.30.0
+
+# Optional: for .env support
+python-dotenv>=1.0.0
+
+# Optional: HTTP requests (some LLMs need it)
+requests>=2.31.0
+
+# Optional: for running async tasks (if needed)
+aiohttp>=3.8.0

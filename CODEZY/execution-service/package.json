@@ -1,0 +1,21 @@
+{
+  "name": "codezy-execution-service",
+  "version": "1.0.0",
+  "description": "Scalable Docker-based code execution service for Python, Java, and C++",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "dockerode": "^4.0.2",
+    "uuid": "^13.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
