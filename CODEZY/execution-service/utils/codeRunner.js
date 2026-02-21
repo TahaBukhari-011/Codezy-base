@@ -56,6 +56,19 @@ export async function executeCode(language, code, stdin = '') {
       WorkingDir: '/app'
     });
 
+    // Attach to container output streams BEFORE starting
+    const stream = await container.attach({
+      stream: true,
+      stdout: true,
+      stderr: true
+    });
+
+    // Collect output
+    let outputBuffer = Buffer.alloc(0);
+    stream.on('data', (chunk) => {
+      outputBuffer = Buffer.concat([outputBuffer, chunk]);
+    });
+
     // Start container (stdin embedded in command)
     await container.start();
 
@@ -65,14 +78,11 @@ export async function executeCode(language, code, stdin = '') {
       timeout(dockerConfig.limits.timeout)
     ]);
 
-    // Get logs
-    const logs = await container.logs({
-      stdout: true,
-      stderr: true,
-      follow: false
-    });
+    // Wait a bit for stream to flush
+    await new Promise(resolve => setTimeout(resolve, 100));
 
-    const output = parseDockerLogs(logs);
+    // Parse collected output
+    const output = parseDockerLogs(outputBuffer);
 
     return {
       stdout: output.stdout,
